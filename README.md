@@ -8,4 +8,6 @@ dot: &#8729;</br>
 ### Logarithms 
 <b>lg(-1) = N &#8660; 2<sup>N</sup> = -1 </br> 
 er ikke muligt, da definitionsmængden for lg er "positive reele tal"
-### Exc
+### Exc9
+lg(2) = 1                fordi      2<sup>1</sup> = 2 </br>
+lg<sub>b</sub>(b) = 1    fordi      b<sup>1</sup> = b </br>
