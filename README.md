@@ -1,4 +1,7 @@
 # D9septemberTorsdag
+
+## 1.1.14
+
 ## Some useful math for analysis of algorithms - Thore Husfedt
 biimplikations tegn : &#8660; </br>
 not equal: &ne;</br>
