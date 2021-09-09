@@ -1,2 +1,2 @@
 # D9septemberTorsdag
-b<sub>n</sub>
+b<sup>n</sup>
