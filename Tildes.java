@@ -10,7 +10,10 @@
 //3: forsøger med "weighted quick union"....
 // TIME LIMIT EXCEEDED
 
-//4:
+//4:Dropper "split" af string's
+// TIME LIMIT EXCEEDED
+
+//5:
 import java.util.Scanner;
 
 
@@ -34,18 +37,20 @@ public class Tildes{
         }
 
         //skifter til næste linje efter de to input tal N og q
-        String input = s.nextLine();
+        s.nextLine();
 
         //read all queries
         for(int i=0; i < q; i++){
-            input = s.nextLine();
-            String[] split = input.split(" ");
-            
+            //input = s.nextLine();
+            char op = s.next().charAt(0);
+            //int s1 = s.nextInt();
+            //int s2 = s.nextInt();
+            //String[] split = input.split(" ");
 
-            if(split[0].equals("t"))
-                union(Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-            if(split[0].equals("s"))
-                System.out.println(size(Integer.parseInt(split[1])));
+            if(op == 't')//s.next()split[0].equals("t"))
+                union(s.nextInt(),s.nextInt());//Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+            if(op == 's')//split[0].equals("s"))
+                System.out.println(size(s.nextInt()));//size(Integer.parseInt(split[1])));
 
         }
         s.close();
