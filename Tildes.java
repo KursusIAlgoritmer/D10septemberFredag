@@ -8,15 +8,17 @@
 // TIME LIMIT EXCEEDED
 
 //3: forsøger med "weighted quick union"....
+// TIME LIMIT EXCEEDED
 
+//4:
 import java.util.Scanner;
 
 
 public class Tildes{
-    static int[] sizes; 
+    static int[] sizes;
     static int[] guests;
     public static void main(String[] args) {
-        
+
         Scanner s = new Scanner(System.in);
 
         int N = s.nextInt();
@@ -39,9 +41,10 @@ public class Tildes{
             input = s.nextLine();
             String[] split = input.split(" ");
             
-            if(split[0].equals("t")) 
+
+            if(split[0].equals("t"))
                 union(Integer.parseInt(split[1]), Integer.parseInt(split[2]));
-            if(split[0].equals("s")) 
+            if(split[0].equals("s"))
                 System.out.println(size(Integer.parseInt(split[1])));
 
         }
@@ -54,43 +57,40 @@ public class Tildes{
         for(int k : guests) if(id==k)s=s+1;
         return s;
         */
-        return sizes[i-1];
+        return sizes[find(i)];
     }
 
 
     public static int find(int i){
-        return guests[i-1];
+        //return guests[i-1];
+        i--;
+
+        while(i !=  guests[i]) i = guests[i];
+
+        return i;
     }
 
     public static void union(int i, int j){
-        int idI     = find(i);
+        /*int idI     = find(i);
         int idJ     = find(j);
         int newSize   = sizes[i-1] + sizes[j-1];
-
-       // sizes[i-1] = sizes[i-1] + 1;
-       // sizes[j-1] = sizes[j-1] + 1;
-       // System.out.println(" union: " + i + " , " + j);
 
         if(idJ != idI){
             for(int k=0; k < guests.length; k++){
                 if(guests[k]==idJ || guests[k]==idI){
                     guests[k]= idI;
                     sizes[k] = newSize;
-                    //System.out.println(" ændrer nr. k til size = " + newSize);
                 }
 
             }
-        }
+        }*/
+        int idI = find(i);
+        int idJ = find(j);
+        if(idI == idJ) return;
+        if(sizes[idI] < sizes[idJ]) { guests[idI] = idJ ; sizes[idJ] += sizes[idI]; }
+        else                        { guests[idJ] = idI ; sizes[idI] += sizes[idJ]; }
 
-        /*
-        for(int m : sizes){
-            System.out.print( m + " ");
-        }
-        
-        System.out.println();
-        */
     }
-
 
 
 }
