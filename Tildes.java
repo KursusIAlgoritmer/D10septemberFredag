@@ -14,6 +14,16 @@
 // TIME LIMIT EXCEEDED
 
 //5: https://stackoverflow.com/questions/7049011/whats-the-fastest-way-to-read-from-system-in-in-java
+// TIME LIMIT EXCEEDED
+//men forbedring 17 cases... 
+
+//6:...
+
+//7: Vejforkortning
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 
@@ -22,31 +32,46 @@ public class Tildes{
     static int[] guests;
 
     public static void main(String[] args) {
+        try {
+            int N = readInt();
+            int q = readInt();
 
-        Scanner s = new Scanner(System.in);
+            sizes   = new int[N];
+            guests  = new int[N]; 
 
-        int N = s.nextInt(); int q = s.nextInt();
+            for(int i = 0; i < N; i++){
+                sizes[i]=1; guests[i]=i;
+            }
 
-        guests = new int[N]; sizes  = new int[N];
-
-        //create guest's array
-        for(int i=0; i < N ; i++){
-            guests[i] = i; sizes[i] = 1;
+            for(int i=0 ; i <q ; i++){
+                int input = System.in.read();
+                if(input == 116){
+                    union(readInt(),readInt());
+                }
+                else if(input == 115)
+                    System.out.println(size(readInt()));
+            }
+        } catch (Exception e) {
+            System.out.println(e);;
+            //TODO: handle exception
         }
+ 
+    
 
-        //skifter til næste linje efter de to input tal N og q
-        s.nextLine();
-
-        //read all queries
-        for(int i=0; i < q; i++){
-            char op = s.next().charAt(0);
-
-            if(op == 't') union(s.nextInt(),s.nextInt());
-            else if(op == 's') System.out.println(size(s.nextInt()));
-
-        }
-        s.close();
     }
+
+    private static int readInt() throws IOException {
+        int ret = 0;
+        boolean dig = false;
+        for (int c = 0; (c = System.in.read()) != -1; ) {
+            if (c >= '0' && c <= '9') {
+                dig = true;
+                ret = ret * 10 + c - '0';
+            } else if (dig) break;
+        }
+        return ret;
+    }
+
 
     public static int size(int i){
         return sizes[find(i)];
@@ -54,9 +79,14 @@ public class Tildes{
 
     public static int find(int i){
         i--;
+        int originalIndex = i;
         while(i !=  guests[i]) i = guests[i];
+        guests[originalIndex] = i;
         return i;
+    
+    //7: Vejforkortning
     }
+
 
     public static void union(int i, int j){
         int idI = find(i);
