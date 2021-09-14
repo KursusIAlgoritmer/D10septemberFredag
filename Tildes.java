@@ -15,7 +15,7 @@
 
 //5: https://stackoverflow.com/questions/7049011/whats-the-fastest-way-to-read-from-system-in-in-java
 // TIME LIMIT EXCEEDED
-//men forbedring 17 cases... 
+//men forbedring 17 cases...
 
 //6:...
 
@@ -37,7 +37,7 @@ public class Tildes{
             int q = readInt();
 
             sizes   = new int[N];
-            guests  = new int[N]; 
+            guests  = new int[N];
 
             for(int i = 0; i < N; i++){
                 sizes[i]=1; guests[i]=i;
@@ -55,8 +55,8 @@ public class Tildes{
             System.out.println(e);;
             //TODO: handle exception
         }
- 
-    
+
+
 
     }
 
@@ -80,10 +80,17 @@ public class Tildes{
     public static int find(int i){
         i--;
         int originalIndex = i;
-        while(i !=  guests[i]) i = guests[i];
-        guests[originalIndex] = i;
+        while(i !=  guests[i]) {
+            //guests[i] = guests[guests[i]];
+            i = guests[i];
+        }
+        while(originalIndex != guests[originalIndex]){
+              int oldParent = guests[originalIndex];
+              guests[originalIndex] = i;
+              originalIndex = oldParent;
+        }
         return i;
-    
+
     //7: Vejforkortning
     }
 
