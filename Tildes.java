@@ -21,55 +21,40 @@
 
 //7: Vejforkortning
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Scanner;
-
 
 public class Tildes{
     static int[] sizes;
     static int[] guests;
 
     public static void main(String[] args) {
-        try {
-            int N = readInt();
-            int q = readInt();
 
-            sizes   = new int[N];
-            guests  = new int[N];
+      try{
+      Kattio io = new Kattio(System.in, System.out);
 
-            for(int i = 0; i < N; i++){
-                sizes[i]=1; guests[i]=i;
-            }
+        int N = io.getInt();
+        int q = io.getInt();
 
-            for(int i=0 ; i <q ; i++){
-                int input = System.in.read();
-                if(input == 116){
-                    union(readInt(),readInt());
-                }
-                else if(input == 115)
-                    System.out.println(size(readInt()));
-            }
-        } catch (Exception e) {
-            System.out.println(e);;
-            //TODO: handle exception
+        guests = new int[N];
+        sizes  = new int[N];
+
+        //create guest's array
+        for(int i=0; i < N ; i++){
+            guests[i] = i;
+            sizes[i] = 1;
         }
 
+        //read all queries
+        for(int i=0; i < q; i++){
+            char op = io.getWord().charAt(0);
 
+            if(op == 't')//s.next()split[0].equals("t"))
+                union(io.getInt(),io.getInt());//Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+            if(op == 's')//split[0].equals("s"))
+                io.println(size(io.getInt()));//size(Integer.parseInt(split[1])));
 
-    }
-
-    private static int readInt() throws IOException {
-        int ret = 0;
-        boolean dig = false;
-        for (int c = 0; (c = System.in.read()) != -1; ) {
-            if (c >= '0' && c <= '9') {
-                dig = true;
-                ret = ret * 10 + c - '0';
-            } else if (dig) break;
         }
-        return ret;
+        io.close();
+      }catch(Exception e){}
     }
 
 
